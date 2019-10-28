@@ -1,0 +1,61 @@
+import React from 'react'
+import ErrorMessage from './ErrorMessage'
+import useErrorHandler from '../utils/ErrorHandler'
+import { apiRequest, validateLoginForm } from '../utils/Helpers'
+import './../App.css';
+
+const LogInForm = ()=> {
+
+  const [userName, setUserName] = React.useState('')
+  const [userPassword, setUserPassword] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
+  const { error, showError } = useErrorHandler(null)
+
+  const authHandler = async () => {
+    try {
+      setLoading(true)
+      const userData = await apiRequest(
+        "https://jsonplaceholder.typicode.com/users",
+        "post",
+        { name: userName, password: userPassword }
+      );
+      const { id, name } = userData;
+    } catch (err) {
+      setLoading(false)
+      showError(err.message)
+    }
+  }
+
+  return (
+    <form onSubmit={e => {
+      e.preventDefault()
+      if (validateLoginForm(userName, userPassword, showError)) {
+        authHandler()
+      }
+    }}>
+      <h1>Log in to see the lists..</h1>
+      <br />
+        <input
+          type="name"
+          name="name"
+          value={userName}
+          placeholder="Name"
+          onChange={e => setUserName(e.target.value)}
+        />
+        <input
+          type="password"
+          name="password"
+          value={userPassword}
+          placeholder="Password"
+          onChange={e => setUserPassword(e.target.value)}
+        />
+      <button type="submit" disabled={loading}>
+        {loading ? "Loading..." : "Log in"}
+      </button>
+      <br />
+      {error && <ErrorMessage errorMessage={error} />}
+  </form>
+  );
+}
+
+export default LogInForm;
