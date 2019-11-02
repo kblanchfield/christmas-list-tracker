@@ -38,9 +38,9 @@ const AddItem = () => {
                 addNewItem()
             }}
         >
-            <input type="text" ref={itemNameInput} placeholder="Add item to Christmas list" />
-            <input type="text" ref={itemCommentInput} placeholder="Add item to Christmas list" />
-            <input type="text" ref={itemLinksInput} placeholder="Add item to Christmas list" />
+            <input type="text" ref={itemNameInput} placeholder="Item name" />
+            <input type="text" ref={itemCommentInput} placeholder="Comments" />
+            <input type="text" ref={itemLinksInput} placeholder="Links" />
             <button type="submit">
                 Add
             </button>
