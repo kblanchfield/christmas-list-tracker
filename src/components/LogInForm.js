@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import ErrorMessage from './ErrorMessage'
-import useErrorHandler from '../utils/ErrorHandler'
+import useErrorHandler from '../utils/custom-hooks/ErrorHandler'
 import { apiRequest, validateLoginForm } from '../utils/Helpers'
 import { authContext } from "../contexts/AuthContext"
 import '../App.css';
