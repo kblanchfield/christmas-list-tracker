@@ -1,21 +1,13 @@
-import React from 'react';
-import Lists from './components/Lists'
-import LogInForm from './components/LogForm'
-import './App.css';
+import React from 'react'
+import RootContainer from './containers/RootContainer'
+import AuthContextProvider from "./contexts/AuthContext"
 
-function App() {
-
-  const isLoggedIn = false;
-
+const App = () => {
   return (
-    <div className="App">
-      {isLoggedIn ?
-        <Lists />
-      :
-        <LogInForm />  
-    }
-    </div>
-  );
+    <AuthContextProvider>
+      <RootContainer />
+    </AuthContextProvider>
+  )
 }
 
-export default App;
+export default App

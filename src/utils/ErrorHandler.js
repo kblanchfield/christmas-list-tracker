@@ -1,7 +1,7 @@
-import React from 'react'
+import { useState } from 'react'
 
 const useErrorHandler = initialState => {
-  const [error, setError] = React.useState(initialState)
+  const [error, setError] = useState(initialState)
 
   const showError = errorMessage => {
     setError(errorMessage)

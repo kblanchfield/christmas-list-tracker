@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import ErrorMessage from './ErrorMessage'
 import useErrorHandler from '../utils/ErrorHandler'
 import { apiRequest, validateLoginForm } from '../utils/Helpers'
-import './../App.css';
+import { authContext } from "../contexts/AuthContext"
+import '../App.css';
 
-const LogInForm = ()=> {
+const LogInForm = () => {
 
-  const [userName, setUserName] = React.useState('')
-  const [userPassword, setUserPassword] = React.useState('')
-  const [loading, setLoading] = React.useState(false)
+  const [userName, setUserName] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const auth = useContext(authContext)
   const { error, showError } = useErrorHandler(null)
 
   const authHandler = async () => {
@@ -18,8 +20,9 @@ const LogInForm = ()=> {
         "https://jsonplaceholder.typicode.com/users",
         "post",
         { name: userName, password: userPassword }
-      );
-      const { id, name } = userData;
+      )
+      const { id, name } = userData
+      auth.setAuthStatus({ id, name })
     } catch (err) {
       setLoading(false)
       showError(err.message)
@@ -33,7 +36,7 @@ const LogInForm = ()=> {
         authHandler()
       }
     }}>
-      <h1>Log in to see the lists..</h1>
+      <h1>Log in to see the lists...</h1>
       <br />
         <input
           type="name"
