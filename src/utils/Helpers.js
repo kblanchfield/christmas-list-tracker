@@ -25,12 +25,11 @@ export const apiRequest = async (url, method, bodyParams) => {
     },
     body: bodyParams ? JSON.stringify(bodyParams) : undefined
   })
-
   return await response.json()
 }
 
 export const getStoredUserAuth = () => {
-  const auth = window.localStorage.getItem("UserAuth")
+  const auth = window.sessionStorage.getItem("UserAuth")
   if (auth) {
     return JSON.parse(auth)
   }

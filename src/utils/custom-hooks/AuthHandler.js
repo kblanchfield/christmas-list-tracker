@@ -5,12 +5,12 @@ const useAuthHandler = initialState => {
     const [auth, setAuth] = useState(initialState)
 
     const setAuthStatus = userAuth => {
-        window.localStorage.setItem("UserAuth", JSON.stringify(userAuth))
+        window.sessionStorage.setItem("UserAuth", JSON.stringify(userAuth))
         setAuth(userAuth)
     }
 
     const setUnauthStatus = () => {
-        window.localStorage.clear()
+        window.sessionStorage.clear()
         setAuth(DEFAULT_USER_AUTH)
     }
 

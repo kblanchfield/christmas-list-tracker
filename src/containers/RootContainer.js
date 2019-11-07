@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { authContext } from "../contexts/AuthContext"
-import LogInForm from '../components/LogInForm'
+import LogInPage from '../components/LogInPage'
 import Lists from '../components/Lists'
 
 function RootContainer(){
@@ -10,7 +10,7 @@ function RootContainer(){
         <>
             {auth.id
                 ? <Lists />
-                : <LogInForm />
+                : <LogInPage />
             }
         </>
     )

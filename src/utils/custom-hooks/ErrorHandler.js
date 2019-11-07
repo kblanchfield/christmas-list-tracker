@@ -5,7 +5,7 @@ const useErrorHandler = initialState => {
 
   const showError = errorMessage => {
     setError(errorMessage)
-    console.log("error in error handlesr: ", errorMessage)
+    console.log("error in error handler: ", errorMessage)
     window.setTimeout(() => {
       setError(null)
     }, 3000)
