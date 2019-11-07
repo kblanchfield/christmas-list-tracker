@@ -1,18 +1,30 @@
-import React, { useState, useContext } from 'react'
-import { authContext } from "../contexts/AuthContext"
+import React from 'react'
+import OthersItem from './OthersItem'
 import './../App.css'
+import './Lists.css'
 
-const OthersList = ({ name}) => {
-  const { auth } = useContext(authContext)
+const OthersList = ({ name, data }) => {
 
-  // useEffect here to update db if user reserves or compeltes an item on another's list
-  // const user_id = auth.id - so we know who has reserved or completed an item on another's list
+  console.log("OthersList props: ", name, data)
+  const possessiveName = name[name.length - 1] === 's' ? `${name}'` : `${name}'s`
 
   return (
     <div className="others-list">
-        <p>Here is the list for: {name}</p>
+      <p className="name">{possessiveName} list</p>
+      <div className="list">
+        {data.map(item => <OthersItem 
+          key={item.name}
+          username={item.username}
+          name={item.name}
+          comment={item.comment}
+          links={item.links}
+          reserver={item.reserver}
+          buyer={item.buyer}
+          bought={item.bought} 
+        />)}
+      </div>
     </div>
-  );
+  )
 }
 
-export default OthersList;
+export default OthersList
