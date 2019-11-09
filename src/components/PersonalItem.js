@@ -1,13 +1,19 @@
 import React from 'react'
+import './Lists.css'
 
 const PersonalItem = ({ name, comment, links }) => {
 
     return (
-        <p><i className="far fa-snowflake"></i> {name}, {comment}, {links.map(link => {
-            if (link.length > 0) {
-                return <a href={link} target='_blank' key={link}>Link</a>
-            }
-        })}</p>
+        <p><i className="far fa-snowflake"></i>
+            {name}
+            <span className="item-comment"> - {comment}</span>, 
+            {links.map(link => {
+                if (link.length > 0) {
+                    return <a href={link} target='_blank' rel="noopener noreferrer" key={link}> Link</a>
+                }
+                return
+            })}
+        </p>
     )
 }
   

@@ -22,11 +22,11 @@ const OthersLists = () => {
       updateOthersLists(newLists.othersLists)
     }
     getOthersLists()
-  }, [])
+  }, [auth.name, updateOthersLists])
 
   return (
     <div className="others-lists">
-        {Object.keys(othersLists).map(person => <OthersList key={person} name={person} data={othersLists[person]} />)}
+        {Object.keys(othersLists).map((person, index) => <OthersList key={person} name={person} index={index} data={othersLists[person]} />)}
     </div>
   )
 }
