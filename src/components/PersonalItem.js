@@ -3,8 +3,6 @@ import './Lists.css'
 
 const PersonalItem = ({ name, comment, links }) => {
 
-    console.log("OthersItPersonalItemem: ", name, comment, links)
-
     return (
         <p><i className="far fa-snowflake"></i>
             {name}

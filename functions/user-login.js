@@ -18,11 +18,13 @@ exports.handler = async (event, context) => {
         client.close()
 
         if (user && bcrypt.compareSync(password, user.password)) {
+            console.log("statusCode: ", 200)
             return {
                 statusCode: 200,
                 body: JSON.stringify({ id: user._id, name: user.username, accessToken: user.accessToken })
             }
         } else {
+            console.log("statusCode: ", 400)
             return {
                 statusCode: 400,
                 body: "Username or password not found"
@@ -30,8 +32,9 @@ exports.handler = async (event, context) => {
         }
     }
     catch (err) {
+        console.log("statusCode: ", 400)
         return {
-            statusCode: 500,
+            statusCode: 400,
             body: JSON.stringify({ err })
         }
     }

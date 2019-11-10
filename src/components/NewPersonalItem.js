@@ -2,11 +2,7 @@ import React, { useRef, useContext } from "react"
 import { authContext } from "../contexts/AuthContext"
 import { listsContext } from "../contexts/ListsContext"
 import { apiRequest } from '../utils/Helpers'
-
-/** Presentation */
 import ErrorMessage from "../components/ErrorMessage"
-
-/** Custom Hooks */
 import useErrorHandler from "../utils/custom-hooks/ErrorHandler"
 
 const AddItem = () => {
@@ -30,27 +26,25 @@ const AddItem = () => {
         const itemName = itemNameInput.current.value
         const itemComment = itemCommentInput.current.value
         const itemLinks = itemLinksInput.current.value.split(',')
-        // post new item to db and get back complete personal list for user_id
-        console.log("add new personal item: ", JSON.stringify({ username: auth.name, name: itemName, comment: itemComment, links: itemLinks, bought: false}, null, 2))
+        
         const newItem = await apiRequest(
             "/.netlify/functions/add-personal-item",
             "post",
-            { item: { username: auth.name, name: itemName, comment: itemComment, links: itemLinks, bought: false }}
+            { username: auth.name, name: itemName, comment: itemComment, links: itemLinks, bought: false }
         )
         if (!newItem.created) {
-            console.log("item not added for some reason")
+            console.log("Item not added for some reason")
             return
         }
-        console.log("getting personal list from NewPersonalItem component")
+
         const newList = await apiRequest(
             `/.netlify/functions/personal-list?username=${auth.name}`,
             "get"
         )
         if (!newList.found) {
-            console.log("couldn't find personal list for some reason")
+            console.log("Couldn't find personal list for some reason")
             return
         }
-        console.log("new personal list: ", newList.personalList)
         updatePersonalList(newList.personalList)
         resetForm()
     }

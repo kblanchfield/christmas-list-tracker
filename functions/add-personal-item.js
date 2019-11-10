@@ -3,8 +3,7 @@ const { MG_URL, MG_DB } = process.env
 
 exports.handler = async (event, context) => {
     context.callbackWaitsForEmptyEventLoop = false
-    const item = JSON.parse(event.body)
-    console.log("new item to add: ", item)
+    const { username, name, comment, links, bought } = JSON.parse(event.body)
 
     try {
         const client = new MongoClient(MG_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -14,15 +13,17 @@ exports.handler = async (event, context) => {
         const db = client.db(MG_DB)
         const Item = db.collection('items')
 
-        await Item.insertOne(item)
+        await Item.insertOne({ username, name, comment, links, bought })
         client.close()
     
+        console.log("status: ", 200)
         return {
             statusCode: 200,
             body: JSON.stringify({ created: true })
         }
     }
     catch (err) {
+        console.log("status: ", 400)
         return {
             statusCode: 400,
             body: JSON.stringify({ created: false, err })

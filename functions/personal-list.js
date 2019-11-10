@@ -13,15 +13,17 @@ exports.handler = async (event, context) => {
         const db = client.db(MG_DB)
         const Item = db.collection('items')
 
-        const personalList = await Item.find({ username: username }).project({ user_id: 1, name: 1, comment: 1, links: 1, _id: 0 }).toArray()
+        const personalList = await Item.find({ username: username }).project({ username: 1, name: 1, comment: 1, links: 1, _id: 0 }).toArray()
         client.close()
     
+        console.log("statusCode: ", 200)
         return {
             statusCode: 200,
             body: JSON.stringify({ found: true, personalList: personalList })
         }
     }
     catch (err) {
+        console.log("statusCode: ", 400)
         return {
             statusCode: 400,
             body: JSON.stringify({ found: false, err })

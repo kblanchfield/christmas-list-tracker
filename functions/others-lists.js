@@ -23,13 +23,15 @@ exports.handler = async (event, context) => {
             }
             othersLists[item.username].push(item)
         })
-    
+
+        console.log("status: ", 200)
         return {
             statusCode: 200,
             body: JSON.stringify({ found: true, othersLists: othersLists })
         }
     }
     catch (err) {
+        console.log("status: ", 400)
         return {
             statusCode: 400,
             body: JSON.stringify({ found: false, err })

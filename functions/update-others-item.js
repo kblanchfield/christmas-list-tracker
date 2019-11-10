@@ -27,12 +27,14 @@ exports.handler = async (event, context) => {
         await Item.updateOne(filter, { $set: update })
         client.close()
     
+        console.log("statusCode: ", 200)
         return {
             statusCode: 200,
             body: JSON.stringify({ updated: true })
         }
     }
     catch (err) {
+        console.log("statusCode: ", 400)
         return {
             statusCode: 400,
             body: JSON.stringify({ updated: false, err })

@@ -18,7 +18,7 @@ const PersonalList = () => {
           "get"
       )
       if (!newList.found) {
-          console.log("couldn't find personal list for some reason")
+          console.log("Couldn't find personal list for some reason")
           return
       }
       updatePersonalList(newList.personalList)
