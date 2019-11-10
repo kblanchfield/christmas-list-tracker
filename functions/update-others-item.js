@@ -15,6 +15,7 @@ exports.handler = async (event, context) => {
         buyer: buyer ? buyer : '',
         bought
     }
+    console.log(filter, update)
 
     try {
         const client = new MongoClient(MG_URL, { useNewUrlParser: true, useUnifiedTopology: true })
