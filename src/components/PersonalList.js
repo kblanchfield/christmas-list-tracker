@@ -34,11 +34,13 @@ const PersonalList = () => {
         <img src="./images/bauble-2.png" alt="christmas-bauble" />
         <img src="./images/bauble-3.png" alt="christmas-bauble" />
       </div>
-      {personalList.length === 0 
-      ? <p>You haven't added anything to your Christmas list yet. Get a move on!</p>
-      : <p>Check out your Christmas list <span role='img' aria-label='hand-pointing-down'>👇</span></p>}
-      <div className="list">
-        {personalList.map(item => <PersonalItem key={item.name} name={item.name} comment={item.comment} links={item.links} />)}
+      <div className="personal-list-items">
+        {personalList.length === 0 
+        ? <p>You haven't added anything to your Christmas list yet. Get a move on!</p>
+        : <p>Check out your Christmas list <span role='img' aria-label='hand-pointing-down'>👇</span></p>}
+        <div className="list">
+          {personalList.map(item => <PersonalItem key={item.name} name={item.name} comment={item.comment} links={item.links} />)}
+        </div>
       </div>
       <NewPersonalItem />
     </div>

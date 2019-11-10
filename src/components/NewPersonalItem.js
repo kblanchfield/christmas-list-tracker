@@ -64,7 +64,7 @@ const AddItem = () => {
             >
                 <input type="text" ref={itemNameInput} placeholder="Item name" />
                 <input type="text" ref={itemCommentInput} placeholder="Comments" />
-                <input type="text" ref={itemLinksInput} placeholder="Links (separated by a comma if more than one link)" />
+                <input type="text" ref={itemLinksInput} placeholder="Links (separated by a comma)" />
                 <button type="submit">
                     Add
                 </button>
