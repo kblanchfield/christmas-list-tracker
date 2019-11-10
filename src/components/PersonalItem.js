@@ -10,8 +10,9 @@ const PersonalItem = ({ name, comment, links }) => {
             {links.map(link => {
                 if (link.length > 0) {
                     return <a href={link} target='_blank' rel="noopener noreferrer" key={link}> Link</a>
+                } else {
+                    return ''
                 }
-                return
             })}
         </p>
     )

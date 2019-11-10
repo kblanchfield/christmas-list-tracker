@@ -31,8 +31,6 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
             if (!response.updated) {
                 console.log("Couldn't update others' lists for some reason")
                 return
-            } else {
-                console.log("Item updated")
             }
             getUpdatedOthersLists()
         }
@@ -49,8 +47,6 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
             if (!response.updated) {
                 console.log("Couldn't update others' lists for some reason")
                 return
-            } else {
-                console.log("Item updated")
             }
             getUpdatedOthersLists()
         }
@@ -69,14 +65,13 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
                 <span className="item-comment"> - {comment}</span>, 
                 {links.map((link, index) => {
                     if (link.length > 0) {
-                        console.log(username, " link ", index)
                         if (index === links.length - 1) {
-                            console.log(index, " last link: ", link)
                             return <a href={link} target='_blank' rel="noopener noreferrer" key={index}>Link</a>
                         } else {
-                            console.log(index, " not last link: ", link)
                             return <a href={link} target='_blank' rel="noopener noreferrer" key={index}>Link</a>
                         }
+                    } else {
+                        return ''
                     }
                 })}
                 <br />
