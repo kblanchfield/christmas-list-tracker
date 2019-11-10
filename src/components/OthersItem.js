@@ -11,7 +11,7 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
   
     const getUpdatedOthersLists = async () => {
         const newLists = await apiRequest(
-            `/.netlify/functions/others-lists/${auth.name}`,
+            `/.netlify/functions/others-lists?username=${auth.name}`,
             "get"
         )
         if (!newLists.found) {
