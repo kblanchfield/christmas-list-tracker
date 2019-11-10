@@ -26,7 +26,7 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
             const response = await apiRequest(
                 `/.netlify/functions/update-others-item/`,
                 "put",
-                { item: { username, name, comment, links, buyer: auth.name, reserver, bought: !bought }}
+                { username, name, comment, links, buyer: auth.name, reserver, bought: !bought }
             )
             if (!response.updated) {
                 console.log("Couldn't update others' lists for some reason")
@@ -42,7 +42,7 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
             const response = await apiRequest(
                 `/.netlify/functions/update-others-item/`,
                 "put",
-                { item: { username, name, comment, links, reserver: newReserver, bought: false }}
+                { username, name, comment, links, reserver: newReserver, bought: false }
             )
             if (!response.updated) {
                 console.log("Couldn't update others' lists for some reason")
