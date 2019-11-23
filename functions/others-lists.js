@@ -13,7 +13,9 @@ exports.handler = async (event, context) => {
         const db = client.db(MG_DB)
         const Item = db.collection('items')
 
-        const items = await Item.find({ username: { $ne: username } }).toArray()
+        const items = await Item.find({ username: { $ne: username } })
+            .sort({ index: 1 })
+            .toArray()
         client.close()
 
         const othersLists = {}

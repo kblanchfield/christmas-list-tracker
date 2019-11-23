@@ -14,7 +14,10 @@ exports.handler = async (event, context) => {
         const Item = db.collection('items')
 
         await Item.insertOne({ username, name, comment, links, bought })
-        const personalList = await Item.find({ username: username }).project({ username: 1, name: 1, comment: 1, links: 1, _id: 0 }).toArray()
+        const personalList = await Item.find({ username: username })
+            .project({ username: 1, name: 1, comment: 1, links: 1, _id: 0 })
+            .sort({ index: 1 })
+            .toArray()
         client.close()
     
         console.log("status: ", 200)

@@ -25,7 +25,9 @@ exports.handler = async (event, context) => {
         const Item = db.collection('items')
 
         await Item.updateOne(filter, { $set: update })
-        const items = await Item.find({ username: { $ne: user } }).toArray()
+        const items = await Item.find({ username: { $ne: user } })
+            .sort({ index: 1 })
+            .toArray()
         client.close()
 
         const othersLists = {}

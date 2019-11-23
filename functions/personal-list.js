@@ -13,7 +13,10 @@ exports.handler = async (event, context) => {
         const db = client.db(MG_DB)
         const Item = db.collection('items')
 
-        const personalList = await Item.find({ username: username }).project({ username: 1, name: 1, comment: 1, links: 1, _id: 0 }).toArray()
+        const personalList = await Item.find({ username: username })
+            .project({ username: 1, name: 1, comment: 1, links: 1, _id: 0 })
+            .sort({ index: 1 })
+            .toArray()
         client.close()
     
         console.log("statusCode: ", 200)
