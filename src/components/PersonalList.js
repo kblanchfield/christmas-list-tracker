@@ -40,10 +40,12 @@ const PersonalList = () => {
       <div className="personal-list-items">
         {personalList.length === 0 
         ? <p>You haven't added anything to your Christmas list yet. Get a move on!</p>
-        : <p>Check out your Christmas list <span role='img' aria-label='hand-pointing-down'>👇</span></p>}
+        : <p>Check out your Christmas list <span role='img' aria-label='hand-pointing-down'>👇</span></p>
+        }
         <div className="list">
-          {personalList.map(item => <PersonalItem key={item.name} name={item.name} comment={item.comment} links={item.links} />)}
+          {personalList.map((item, idx) => <PersonalItem key={`${item.name}-${idx}`} name={item.name} comment={item.comment} links={item.links} />)}
         </div>
+        {personalList.length !== 0 && <p className='item-comment'>Edit an item by clicking on the snowflake next to it.</p>}
       </div>
         {isEditItemFormVisible 
           ? <EditPersonalItem />

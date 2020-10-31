@@ -1,28 +1,27 @@
 import React, { useContext } from 'react'
 import { itemsContext } from "../contexts/ItemsContext"
+import Item from './Item'
 import './Lists.css'
 
 const PersonalItem = ({ name, comment, links }) => {
-    const { updateItemToEdit, showEditItemForm } = useContext(itemsContext) 
+    const { isEditItemFormVisible, updateItemToEdit, showEditItemForm } = useContext(itemsContext) 
 
-    const selectItemToEdit = () => {
-        const item = { name, comment, links }
-        showEditItemForm(true)
-        updateItemToEdit(item)
+    const toggleForm = () => {
+        if (!isEditItemFormVisible) {
+            const item = { name, comment, links }
+            showEditItemForm(true)
+            updateItemToEdit(item)
+        }
+        if (isEditItemFormVisible) {
+            showEditItemForm(false)
+        }
     }
 
     return (
-        <p><i onClick={selectItemToEdit} className="far fa-snowflake"></i>
-            {name}
-            <span className="item-comment"> - {comment}</span>, 
-            {links ? links.map(link => {
-                if (link.length > 0) {
-                    return <a href={link} target='_blank' rel="noopener noreferrer" key={link}> Link</a>
-                } else {
-                    return ''
-                }
-            }) : ''}
-        </p>
+        <div className='item-block-personal'>
+            <i onClick={toggleForm} className="far fa-snowflake"></i>
+            <Item name={name} comment={comment} links={links} />
+        </div>
     )
 }
 

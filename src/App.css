@@ -3,10 +3,11 @@
 }
 
 .all-lists {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
+  flex-flow: row wrap;
   width: 100%;
   min-height: 100vh;
+  background-color: #d8dcd6;
 }
 
 .personal-list {
@@ -32,7 +33,7 @@
 .others-list {
   height: auto;
   width: 50%;
-  min-width: 400px;
+  min-width: 350px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;

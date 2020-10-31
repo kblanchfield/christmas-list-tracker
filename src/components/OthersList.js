@@ -21,8 +21,8 @@ const OthersList = ({ name, index, data }) => {
         <img src={`./images/${imageIndex[index + 1]}.png`} alt={`${imageIndex[index + 1]}`} />
       </div>
       <div className="list">
-        {data.map(item => <OthersItem 
-          key={item.name}
+        {data.map((item, idx) => <OthersItem 
+          key={`${item.name}-${idx}`}
           username={item.username}
           name={item.name}
           comment={item.comment}

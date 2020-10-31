@@ -82,3 +82,30 @@
     height: auto;
     margin: 0px 10px;
 }
+
+.item-block-others {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 8px 0px;
+}
+
+.item-block-personal {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 8px 0px;
+}
+
+.item-main {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.item-actions {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.item-meta {
+    display: flex;
+    flex-flow: column nowrap;
+}
