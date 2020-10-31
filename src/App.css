@@ -4,10 +4,11 @@
 
 .all-lists {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   width: 100%;
   min-height: 100vh;
   background-color: #d8dcd6;
+  align-items: stretch;
 }
 
 .personal-list {
@@ -15,7 +16,8 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  /* background-color: #E7DADA; */
+  width: 35%;
+  min-width: 350px;
   background-color: #d0d0d0;
   overflow: scroll;
 }
@@ -28,6 +30,7 @@
   display: flex;
   flex-flow: row wrap;
   background-color: #d8dcd6;
+  width: 65%;
 }
 
 .others-list {

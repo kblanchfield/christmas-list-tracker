@@ -33,7 +33,7 @@ const PersonalList = () => {
     <div className="personal-list">
       <div className="baubles">
         <img src="./images/bauble-1.png" alt="christmas-bauble"/>
-        <p className="name">Hi, <span className="display-name">{auth.name}</span>.</p>
+        <p className="name">Hi, <span className="display-name">{auth.name}</span></p>
         <img src="./images/bauble-2.png" alt="christmas-bauble" />
         <img src="./images/bauble-3.png" alt="christmas-bauble" />
       </div>
