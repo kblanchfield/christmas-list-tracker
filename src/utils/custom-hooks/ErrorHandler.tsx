@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-const useErrorHandler = initialState => {
-  const [error, setError] = useState(initialState)
+const useErrorHandler = (initialState: any) => {
+  const [error, setError] = useState<any>(initialState)
 
-  const showError = errorMessage => {
+  const showError = (errorMessage: any) => {
     setError(errorMessage)
     window.setTimeout(() => {
       setError(null)

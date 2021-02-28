@@ -1,4 +1,5 @@
 import React, { createContext } from 'react'
+import { IAuth } from '../models'
 
 /** Custom Hooks */
 import useAuthHandler from '../utils/custom-hooks/AuthHandler'
@@ -9,13 +10,13 @@ import { getStoredUserAuth } from '../utils/Helpers'
 
 export const authContext = createContext({
   auth: DEFAULT_USER_AUTH,
-  setAuthStatus: () => {},
+  setAuthStatus: (userAuth: IAuth) => {},
   setUnauthStatus: () => {}
 })
 
 const { Provider } = authContext
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }: any) => {
     const { auth, setAuthStatus, setUnauthStatus } = useAuthHandler(getStoredUserAuth())
 
     return (

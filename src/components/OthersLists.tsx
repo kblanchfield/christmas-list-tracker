@@ -13,7 +13,8 @@ const OthersLists = () => {
     const getOthersLists = async () => {
       const newLists = await apiRequest(
           `/.netlify/functions/others-lists?username=${auth.name}`,
-          "get"
+          "get",
+          null
       )
       if (!newLists.found) {
           console.log("Couldn't find others' lists for some reason")
@@ -26,7 +27,12 @@ const OthersLists = () => {
 
   return (
     <div className="others-lists">
-        {Object.keys(othersLists).map((person, index) => <OthersList key={person} name={person} index={index} data={othersLists[person]} />)}
+        {Object.keys(othersLists).map((person: string, index: number) => <OthersList
+          key={person}
+          name={person}
+          index={index}
+          list={othersLists[person]}
+        />)}
     </div>
   )
 }

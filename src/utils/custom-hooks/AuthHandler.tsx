@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { DEFAULT_USER_AUTH } from '../../constants'
+import { IAuth } from '../../models'
 
-const useAuthHandler = initialState => {
-    const [auth, setAuth] = useState(initialState)
+const useAuthHandler = (initialState: IAuth) => {
+    const [auth, setAuth] = useState<IAuth>(initialState)
 
-    const setAuthStatus = userAuth => {
+    const setAuthStatus = (userAuth: IAuth) => {
         window.sessionStorage.setItem("UserAuth", JSON.stringify(userAuth))
         setAuth(userAuth)
     }

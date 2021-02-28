@@ -3,7 +3,7 @@ import { authContext } from "../contexts/AuthContext"
 import { listsContext } from "../contexts/ListsContext"
 import { itemsContext } from "../contexts/ItemsContext"
 import { apiRequest } from '../utils/Helpers'
-import ErrorMessage from "../components/ErrorMessage"
+import ErrorMessage from "./ErrorMessage"
 import useErrorHandler from "../utils/custom-hooks/ErrorHandler"
 
 const EditItem = () => {
@@ -11,20 +11,26 @@ const EditItem = () => {
     const { updatePersonalList } = useContext(listsContext)
     const { itemToEdit, showEditItemForm } = useContext(itemsContext)
     const { error } = useErrorHandler(null)
-    const itemNameInput = useRef(null)
-    const itemCommentInput = useRef(null)
-    const itemLinksInput = useRef(null)
+    const itemNameInput = useRef<HTMLInputElement>(null)
+    const itemCommentInput = useRef<HTMLInputElement>(null)
+    const itemLinksInput = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
-        itemNameInput.current.value = itemToEdit.name
-        itemCommentInput.current.value = itemToEdit.comment
-        itemLinksInput.current.value = itemToEdit.links
+        if (itemNameInput && itemNameInput.current) {
+            itemNameInput.current.value = itemToEdit.name
+        }
+        if (itemCommentInput && itemCommentInput.current) {
+            itemCommentInput.current.value = itemToEdit.comment
+        }
+        if (itemLinksInput && itemLinksInput.current) {
+            itemLinksInput.current.value = itemToEdit.links.join(',')
+        }
     }, [itemToEdit])
 
     const editItem = async () => {
-        const itemName = itemNameInput.current.value
-        const itemComment = itemCommentInput.current.value
-        const itemLinks = itemLinksInput.current.value.split(',')
+        const itemName = itemNameInput?.current?.value
+        const itemComment = itemCommentInput?.current?.value
+        const itemLinks = itemLinksInput?.current?.value.split(',')
         
         const response = await apiRequest(
             `/.netlify/functions/update-personal-item/`,

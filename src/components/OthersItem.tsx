@@ -3,9 +3,11 @@ import { authContext } from "../contexts/AuthContext"
 import { listsContext } from "../contexts/ListsContext"
 import { apiRequest } from '../utils/Helpers'
 import Item from './Item'
+import { IItem } from '../models'
 import './Lists.css'
 
-const OthersItem = ({ username, name, comment, links, reserver, buyer, bought }) => {
+const OthersItem = ({ item }: { item: IItem }) => {
+    const { username, name, comment, links, reserver, buyer, bought } = item
 
     const { auth } = useContext(authContext)
     const { updateOthersLists } = useContext(listsContext)
@@ -57,7 +59,7 @@ const OthersItem = ({ username, name, comment, links, reserver, buyer, bought })
                         </button>
                     }
                 </div>
-                <Item name={name} comment={comment} links={links} />
+                <Item item={item} />
             </div>
             <div className='item-meta'>
                 {bought && ` (bought by ${buyer})`}

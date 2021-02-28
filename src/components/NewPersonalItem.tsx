@@ -2,30 +2,36 @@ import React, { useRef, useContext } from "react"
 import { authContext } from "../contexts/AuthContext"
 import { listsContext } from "../contexts/ListsContext"
 import { apiRequest } from '../utils/Helpers'
-import ErrorMessage from "../components/ErrorMessage"
+import ErrorMessage from "./ErrorMessage"
 import useErrorHandler from "../utils/custom-hooks/ErrorHandler"
 
 const AddItem = () => {
     const { auth } = useContext(authContext)
     const { updatePersonalList } = useContext(listsContext)
     const { error, showError } = useErrorHandler(null)
-    const itemNameInput = useRef(null)
-    const itemCommentInput = useRef(null)
-    const itemLinksInput = useRef(null)
+    const itemNameInput = useRef<HTMLInputElement>(null)
+    const itemCommentInput = useRef<HTMLInputElement>(null)
+    const itemLinksInput = useRef<HTMLInputElement>(null)
 
     const resetForm = () => {
-        itemNameInput.current.value = ""
-        itemCommentInput.current.value = ""
-        itemLinksInput.current.value = ""
+        if (itemNameInput && itemNameInput.current) {
+            itemNameInput.current.value = ""
+        }
+        if (itemCommentInput && itemCommentInput.current) {
+            itemCommentInput.current.value = ""
+        }
+        if (itemLinksInput && itemLinksInput.current) {
+            itemLinksInput.current.value = ""
+        }
     }
 
     const addNewItem = async () => {
         if (!itemNameInput.current) {
             return showError("You've got to name your item before clicking add.")
         }
-        const itemName = itemNameInput.current.value
-        const itemComment = itemCommentInput.current.value
-        const itemLinks = itemLinksInput.current.value.split(',')
+        const itemName = itemNameInput?.current?.value
+        const itemComment = itemCommentInput?.current?.value
+        const itemLinks = itemLinksInput?.current?.value.split(',')
         
         const response = await apiRequest(
             "/.netlify/functions/add-personal-item",

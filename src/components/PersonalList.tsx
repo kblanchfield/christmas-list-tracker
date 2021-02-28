@@ -6,6 +6,7 @@ import { apiRequest } from '../utils/Helpers'
 import NewPersonalItem from './NewPersonalItem'
 import EditPersonalItem from './EditPersonalItem'
 import PersonalItem from './PersonalItem'
+import { IItem } from '../models'
 import '../App.css'
 import './Lists.css'
 
@@ -18,7 +19,8 @@ const PersonalList = () => {
     const getPersonalList = async () => {
       const newList = await apiRequest(
           `/.netlify/functions/personal-list?username=${auth.name}`,
-          "get"
+          "get",
+          null
       )
       if (!newList.found) {
           console.log("Couldn't find personal list for some reason")
@@ -43,7 +45,8 @@ const PersonalList = () => {
         : <p>Check out your Christmas list <span role='img' aria-label='hand-pointing-down'>👇</span></p>
         }
         <div className="list">
-          {personalList.map((item, idx) => <PersonalItem key={`${item.name}-${idx}`} name={item.name} comment={item.comment} links={item.links} />)}
+          {personalList.map((item: IItem, idx: number) => <PersonalItem
+            key={`${item.name}-${idx}`} item={item} />)}
         </div>
         {personalList.length !== 0 && <p className='item-comment'>Edit an item by clicking on the snowflake next to it.</p>}
       </div>

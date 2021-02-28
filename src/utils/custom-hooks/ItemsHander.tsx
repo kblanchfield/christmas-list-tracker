@@ -1,14 +1,15 @@
 import { useState } from 'react'
+import { IItem } from '../../models'
 
 const useItemHandler = () => {
-    const [isEditItemFormVisible, setEditFormVisible] = useState(false)
-    const [itemToEdit, setItemToEdit] = useState({})
+    const [isEditItemFormVisible, setEditFormVisible] = useState<boolean>(false)
+    const [itemToEdit, setItemToEdit] = useState<IItem>({} as IItem)
 
-    const showEditItemForm = bool => {
+    const showEditItemForm = (bool: boolean) => {
         setEditFormVisible(bool)
     }
 
-    const updateItemToEdit = item => {
+    const updateItemToEdit = (item: IItem) => {
         setItemToEdit(item)
     }
 

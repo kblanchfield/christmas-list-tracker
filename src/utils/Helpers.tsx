@@ -1,8 +1,9 @@
 import { DEFAULT_USER_AUTH } from '../constants'
+import { IAuth } from '../models'
 
 const allowedNames = ['CLARE', 'KATE', 'KLAS', 'SALLY', 'PETER']
 
-export const validateLoginForm = (name, password, setError) => {
+export const validateLoginForm = (name: string, password: string, setError: any): boolean => {
   // Check for undefined or empty input fields
   if (!name || !password) {
       setError("Please enter a valid name and password.")
@@ -16,7 +17,7 @@ export const validateLoginForm = (name, password, setError) => {
   return true
 }
 
-export const apiRequest = async (url, method, bodyParams) => {
+export const apiRequest = async (url: string, method: string, bodyParams: any): Promise<any> => {
   const response = await fetch(url, {
     method,
     headers: {
@@ -28,7 +29,7 @@ export const apiRequest = async (url, method, bodyParams) => {
   return await response.json()
 }
 
-export const getStoredUserAuth = () => {
+export const getStoredUserAuth = (): IAuth => {
   const auth = window.sessionStorage.getItem("UserAuth")
   if (auth) {
     return JSON.parse(auth)

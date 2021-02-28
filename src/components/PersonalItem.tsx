@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import { itemsContext } from "../contexts/ItemsContext"
 import Item from './Item'
+import { IItem } from '../models'
 import './Lists.css'
 
-const PersonalItem = ({ name, comment, links }) => {
+const PersonalItem = ({ item }: { item: IItem }) => {
     const { isEditItemFormVisible, updateItemToEdit, showEditItemForm } = useContext(itemsContext) 
 
     const toggleForm = () => {
         if (!isEditItemFormVisible) {
-            const item = { name, comment, links }
             showEditItemForm(true)
             updateItemToEdit(item)
         }
@@ -20,7 +20,7 @@ const PersonalItem = ({ name, comment, links }) => {
     return (
         <div className='item-block-personal'>
             <i onClick={toggleForm} className="far fa-snowflake"></i>
-            <Item name={name} comment={comment} links={links} />
+            <Item item={item} />
         </div>
     )
 }

@@ -1,16 +1,24 @@
 import React, { createContext } from 'react'
+import { IItem } from '../models'
 import useItemsHandler from '../utils/custom-hooks/ItemsHander'
 
-export const itemsContext = createContext({
-    itemToEdit: {},
-    updateItemToEdit: () => {},
+interface IItemsContext {
+    itemToEdit: IItem,
+    updateItemToEdit: (item: IItem) => void,
+    isEditItemFormVisible: boolean,
+    showEditItemForm: (bool: boolean) => void
+}
+
+export const itemsContext = createContext<IItemsContext>({
+    itemToEdit: {} as IItem,
+    updateItemToEdit: (item: IItem) => {},
     isEditItemFormVisible: false,
-    showEditItemForm: () => {}
+    showEditItemForm: (bool: boolean) => {}
 })
 
 const { Provider } = itemsContext
 
-const ItemsProvider = ({ children }) => {
+const ItemsProvider = ({ children }: any) => {
     const { itemToEdit, updateItemToEdit, isEditItemFormVisible, showEditItemForm } = useItemsHandler()
 
     return (

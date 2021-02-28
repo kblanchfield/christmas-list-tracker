@@ -7,9 +7,9 @@ import '../App.css';
 
 const LogInForm = () => {
 
-  const [userName, setUserName] = useState('')
-  const [userPassword, setUserPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [userName, setUserName] = useState<string>('')
+  const [userPassword, setUserPassword] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const auth = useContext(authContext)
   const { error, showError } = useErrorHandler(null)
 
